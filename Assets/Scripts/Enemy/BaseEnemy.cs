@@ -11,7 +11,8 @@ namespace Enemy
         [SerializeField]
         private int m_speed = 1;
 
-        private Transform playerTransform;
+        private Transform m_playerTransform;
+        private Transform m_transform;
 
         public int Health
         { 
@@ -28,25 +29,25 @@ namespace Enemy
         {
             get
             {
-                return m_health;
+                return m_speed;
             }
             set
             {
-                value = m_health;
+                value = m_speed;
             }
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        protected virtual void Start()
         {
-            playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            m_playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            m_transform = transform;
         }
 
         // Update is called once per frame
         void Update()
         {
             Move();
-            transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z);
         }
 
         public void GetDamage(int damage)
@@ -67,8 +68,10 @@ namespace Enemy
 
         public void Move()
         {
-            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, m_speed * Time.deltaTime);
-            transform.LookAt(playerTransform);
+            m_transform.position = Vector2.MoveTowards(m_transform.position, m_playerTransform.position, Speed * Time.deltaTime);
+            m_transform.LookAt(m_playerTransform);
+
+            m_transform.rotation = Quaternion.Euler(0, 0, m_transform.rotation.eulerAngles.z);
         }
     }
 }
