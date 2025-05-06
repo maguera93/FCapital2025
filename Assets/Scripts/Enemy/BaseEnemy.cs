@@ -1,5 +1,6 @@
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Enemy
 {
@@ -9,6 +10,8 @@ namespace Enemy
         private int m_health = 10;
         [SerializeField]
         private int m_speed = 1;
+
+        private Transform playerTransform;
 
         public int Health
         { 
@@ -36,13 +39,14 @@ namespace Enemy
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-
+            playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         }
 
         // Update is called once per frame
         void Update()
         {
             Move();
+            transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z);
         }
 
         public void GetDamage(int damage)
@@ -63,7 +67,8 @@ namespace Enemy
 
         public void Move()
         {
-            throw new System.NotImplementedException();
+            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, m_speed * Time.deltaTime);
+            transform.LookAt(playerTransform);
         }
     }
 }
