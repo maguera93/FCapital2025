@@ -10,6 +10,8 @@ namespace Enemy
         [SerializeField]
         private int m_speed = 1;
 
+        private Transform playerTransform;
+
         public int Health
         { 
             get 
@@ -36,7 +38,7 @@ namespace Enemy
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-
+            playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         }
 
         // Update is called once per frame
