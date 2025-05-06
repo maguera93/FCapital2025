@@ -1,11 +1,37 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 namespace Enemy
 {
     public class BaseEnemy : MonoBehaviour, IEnemyHealth, IEnemyMovement
     {
-        public int Health { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-        public int Speed { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        [SerializeField]
+        private int m_health = 10;
+        [SerializeField]
+        private int m_speed = 1;
+
+        public int Health
+        { 
+            get 
+            {
+                return m_health;
+            } 
+            set 
+            {
+                value = m_health;
+            }
+        }
+        public int Speed
+        {
+            get
+            {
+                return m_health;
+            }
+            set
+            {
+                value = m_health;
+            }
+        }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -21,7 +47,18 @@ namespace Enemy
 
         public void GetDamage(int damage)
         {
-            throw new System.NotImplementedException();
+            Health -= damage;
+
+            if (Health < 0)
+            {
+                // Death
+                Death();
+            }
+        }
+
+        public void Death()
+        {
+
         }
 
         public void Move()
