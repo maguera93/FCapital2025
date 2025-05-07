@@ -4,18 +4,18 @@ using UnityEngine;
 namespace Enemy {
     public class Kamikaze : BaseEnemy
     {
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
+
         protected override void Start()
         {
             base.Start();
         }
 
         // Update is called once per frame
-        void OnCollisionEnter2D(Collision2D collision)
+        void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.tag == "Player")
+            if (collision.CompareTag("Player"))
             {
-                print("BOOM");
+                Debug.Log("BOOM");
             }
         }
     }
