@@ -9,7 +9,7 @@ namespace Enemy
         [SerializeField]
         private int m_health = 10;
         [SerializeField]
-        private int m_speed = 1;
+        public int m_speed = 1;
 
         private Transform m_playerTransform;
         private Transform m_transform;
@@ -39,7 +39,7 @@ namespace Enemy
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        protected virtual void Start()
+        void Start()
         {
             m_playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             m_transform = transform;
