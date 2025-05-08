@@ -9,6 +9,7 @@ namespace Enemy {
             if (collision.CompareTag("Player"))
             {
                 Debug.Log("BOOM");
+                Destroy(gameObject);
             }
         }
     }

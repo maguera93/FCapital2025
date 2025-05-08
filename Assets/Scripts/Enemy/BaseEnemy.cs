@@ -41,14 +41,14 @@ namespace Enemy
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        protected virtual void Start()
         {
             m_playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             m_transform = transform;
         }
 
         // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
             if (Vector2.Distance(m_playerTransform.position, m_transform.position) > stopDistance)
                 Move();
