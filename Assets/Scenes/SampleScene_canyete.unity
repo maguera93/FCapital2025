@@ -151,6 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_health: 10
   m_speed: 1
+  stopDistance: 4
 --- !u!58 &45749809
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -374,6 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_health: 10
   m_speed: 1
+  stopDistance: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,6 +831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_health: 10
   m_speed: 1
+  stopDistance: 4
 --- !u!4 &1876287357
 Transform:
   m_ObjectHideFlags: 0

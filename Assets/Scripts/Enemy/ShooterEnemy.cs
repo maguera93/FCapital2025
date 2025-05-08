@@ -8,7 +8,7 @@ namespace Enemy{
         {
             if (collision.CompareTag("Player"))
             {
-                m_speed = 0;
+                //m_speed = 0;
             }
         }
 

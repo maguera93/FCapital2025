@@ -9,7 +9,9 @@ namespace Enemy
         [SerializeField]
         private int m_health = 10;
         [SerializeField]
-        public int m_speed = 1;
+        private int m_speed = 1;
+        [SerializeField]
+        private float stopDistance = 4f;
 
         private Transform m_playerTransform;
         private Transform m_transform;
@@ -48,7 +50,8 @@ namespace Enemy
         // Update is called once per frame
         void Update()
         {
-            Move();
+            if (Vector2.Distance(m_playerTransform.position, m_transform.position) > stopDistance)
+                Move();
         }
 
         public void GetDamage(int damage)
