@@ -9,11 +9,6 @@ namespace Bullet
         [SerializeField]
         private int m_damage = 7;
 
-        private Transform m_transform;
-        private GameObject targetPlayer;
-        private Rigidbody2D rb;
-        public float force;
-
         public int Speed
         {
             get { return m_speed; }
