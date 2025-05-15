@@ -16,6 +16,9 @@ namespace Enemy
         private Transform m_playerTransform;
         private Transform m_transform;
 
+        protected Transform m_playerTransform;
+        protected Transform m_transform;
+
 
         public int Health
         { 
