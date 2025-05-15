@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_health: 10
   m_speed: 1
+  stopDistance: 0.5
 --- !u!58 &45749809
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -10,9 +10,15 @@ namespace Enemy
         private int m_health = 10;
         [SerializeField]
         private int m_speed = 1;
+        [SerializeField]
+        private float stopDistance = 4f;
+
+        private Transform m_playerTransform;
+        private Transform m_transform;
 
         protected Transform m_playerTransform;
         protected Transform m_transform;
+
 
         public int Health
         { 
@@ -47,7 +53,8 @@ namespace Enemy
         // Update is called once per frame
         protected virtual void Update()
         {
-            Move();
+            if (Vector2.Distance(m_playerTransform.position, m_transform.position) > stopDistance)
+                Move();
         }
 
         public void GetDamage(int damage)
@@ -69,6 +76,9 @@ namespace Enemy
         public void Move()
         {
             m_transform.position = Vector2.MoveTowards(m_transform.position, m_playerTransform.position, Speed * Time.deltaTime);
+            m_transform.LookAt(m_playerTransform);
+
+            m_transform.rotation = Quaternion.Euler(0, 0, m_transform.rotation.eulerAngles.z);
         }
     }
 }

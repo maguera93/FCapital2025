@@ -3,6 +3,7 @@ using Enemy;
 using UnityEngine;
 
 namespace Enemy{
+
     public class ShooterEnemy : BaseEnemy
     {
         [SerializeField]
@@ -12,8 +13,6 @@ namespace Enemy{
 
         private float m_currentTime;
         private bool m_canShoot = true;
-
-        //public Transform targetPlayer;
 
         public GameObject BulletGO
         {
