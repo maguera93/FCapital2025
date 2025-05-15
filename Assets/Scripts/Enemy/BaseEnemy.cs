@@ -11,8 +11,8 @@ namespace Enemy
         [SerializeField]
         private int m_speed = 1;
 
-        private Transform m_playerTransform;
-        private Transform m_transform;
+        protected Transform m_playerTransform;
+        protected Transform m_transform;
 
         public int Health
         { 
@@ -69,9 +69,6 @@ namespace Enemy
         public void Move()
         {
             m_transform.position = Vector2.MoveTowards(m_transform.position, m_playerTransform.position, Speed * Time.deltaTime);
-            m_transform.LookAt(m_playerTransform);
-
-            m_transform.rotation = Quaternion.Euler(0, 0, m_transform.rotation.eulerAngles.z);
         }
     }
 }

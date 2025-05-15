@@ -1,4 +1,4 @@
-using EnemyBullet;
+using Bullet;
 using Enemy;
 using UnityEngine;
 
@@ -12,7 +12,6 @@ namespace Enemy{
 
         private float m_currentTime;
         private bool m_canShoot = true;
-        private Transform m_transform;
 
         //public Transform targetPlayer;
 
@@ -30,7 +29,6 @@ namespace Enemy{
         protected override void Start()
         {
             base.Start();
-            m_transform = GetComponent<Transform>();
         }
 
         protected override void Update()
@@ -56,10 +54,14 @@ namespace Enemy{
             if (!m_canShoot)
                 return;
 
-            //Vector3 directionToPlayer = targetPlayer.position - m_transform.position;
-            //Quaternion rotation = Quaternion.LookRotation(directionToPlayer, Vector3.up);
+            GameObject b = Instantiate(BulletGO, m_transform.position, Quaternion.identity);
 
-            Instantiate(BulletGO, m_transform.position, Quaternion.identity);
+            EnemyBullet enemyBullet = b.GetComponent<EnemyBullet>();
+            Vector3 lookAt = (m_playerTransform.position - m_transform.position);
+
+            float angle = Mathf.Atan2(lookAt.y, lookAt.x) * Mathf.Rad2Deg;
+            enemyBullet.Setup(angle);
+
             m_canShoot = false;
         }
     }
