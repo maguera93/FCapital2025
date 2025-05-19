@@ -14,6 +14,9 @@ public class GlobalVariables : ScriptableSingleton<GlobalVariables>
     public delegate void EnemyDeffeated();
     public EnemyDeffeated OnEnemyDeffeated;
 
+    public delegate void EnemyHit();
+    public EnemyHit OnEnemyHit;
+
     public int Salary { get => m_salary; set => m_salary = value; }
     public int Lifes { get => m_lifes; set => m_lifes = value; }
     public int Points { get => m_points; set => m_points = value; }
@@ -22,5 +25,11 @@ public class GlobalVariables : ScriptableSingleton<GlobalVariables>
     {
         if (OnEnemyDeffeated != null)
             OnEnemyDeffeated.Invoke();
+    }
+
+    public void EnemyHitTriggered()
+    {
+        if (OnEnemyHit != null)
+            OnEnemyHit.Invoke();
     }
 }

@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using UnityEngine;
 using DG.Tweening;
+using Enemy;
 
 [Serializable]
 public struct WaveEnemy
@@ -44,7 +45,7 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    private void OnEnemyDefeated()
+    public void OnEnemyDefeated()
     {
         waves[currentWave].DeffeatedEnemies++;
 
@@ -52,7 +53,7 @@ public class WaveManager : MonoBehaviour
         {
             currentWave++;
 
-            if (currentWave == waves.Length - 1)
+            if (currentWave == waves.Length)
             {
                 // Level Completed
             }

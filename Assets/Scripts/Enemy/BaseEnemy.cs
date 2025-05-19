@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using DG.Tweening;
 
 namespace Enemy
 {
@@ -12,9 +13,13 @@ namespace Enemy
         private int m_speed = 1;
         [SerializeField]
         private float stopDistance = 4f;
+        [SerializeField]
+        private GameObject m_hitParticles;
+        [SerializeField]
+        private GameObject m_deadParticles;
 
-        private Transform m_playerTransform;
-        private Transform m_transform;
+        [Space]
+        private SpriteRenderer m_spriteRenderer;
 
         protected Transform m_playerTransform;
         protected Transform m_transform;
@@ -28,7 +33,7 @@ namespace Enemy
             } 
             set 
             {
-                value = m_health;
+                m_health = value;
             }
         }
         public int Speed
@@ -39,7 +44,7 @@ namespace Enemy
             }
             set
             {
-                value = m_speed;
+                m_speed = value;
             }
         }
 
@@ -48,6 +53,8 @@ namespace Enemy
         {
             m_playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
             m_transform = transform;
+
+            m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         }
 
         // Update is called once per frame
@@ -57,11 +64,33 @@ namespace Enemy
                 Move();
         }
 
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Bullet"))
+            {
+                
+                IBullet bullet = collision.GetComponent<IBullet>();
+                GetDamage(bullet.Damage);
+                Destroy(collision.gameObject);
+            }
+        }
+
         public void GetDamage(int damage)
         {
+            if (Health <= 0)
+                return;
+
             Health -= damage;
 
-            if (Health < 0)
+            GlobalVariables.instance.EnemyHitTriggered();
+
+            GameObject hitFX = Instantiate(m_hitParticles, m_transform.position, Quaternion.identity);
+            Destroy(hitFX, 0.5f);
+
+            m_spriteRenderer.DOColor(Color.red, 0.1f);
+            m_spriteRenderer.DOColor(Color.white, 0.1f).SetDelay(0.2f);
+
+            if (Health <= 0)
             {
                 // Death
                 Death();
@@ -70,7 +99,10 @@ namespace Enemy
 
         public void Death()
         {
-
+            GlobalVariables.instance.EnemyDeffeatedTriggered();
+            GameObject dead = Instantiate(m_deadParticles, m_transform.position, Quaternion.identity);
+            Destroy(dead, 0.5f);
+            Destroy(gameObject);
         }
 
         public void Move()
