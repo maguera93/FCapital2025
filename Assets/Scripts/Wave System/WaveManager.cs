@@ -34,6 +34,11 @@ public class WaveManager : MonoBehaviour
         GlobalVariables.instance.OnEnemyDeffeated += OnEnemyDefeated;
     }
 
+    private void OnDestroy()
+    {
+        GlobalVariables.instance.OnEnemyDeffeated -= OnEnemyDefeated;
+    }
+
     private void InitWave()
     {
         Wave refWav = waves[currentWave];
@@ -56,10 +61,11 @@ public class WaveManager : MonoBehaviour
             if (currentWave == waves.Length)
             {
                 // Level Completed
+                GlobalVariables.instance.WinTriggered();
             }
             else
             {
-                InitWave();
+                Invoke("InitWave", 1f);
             }
         }
     }

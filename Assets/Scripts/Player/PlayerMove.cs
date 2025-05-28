@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Player;
 using UnityEngine;
 
@@ -15,9 +16,20 @@ namespace Player
         private GameObject[] m_weaponsGO;
         private IWeapon[] m_weapons;
 
+        [SerializeField]
+        private Animator animator;
+        [SerializeField]
+        private SpriteRenderer playerSprite;
+        [SerializeField]
+        private ParticleSystem hitParticles;
+
         private int m_currentWeapon = 0;
         private Vector2 m_movement = new Vector2(0f, 0f);
         private Transform m_transform;
+
+        private float m_currentTime = 0f;
+        private float m_powerUpTime = 5f;
+        private bool m_onPowerUp = false;
 
         public float Speed
         {
@@ -54,18 +66,59 @@ namespace Player
             {
                 Weapons[i] = m_weaponsGO[i].GetComponent<IWeapon>();
             }
+
+            GlobalVariables.instance.OnPlayerHit += PlayerHurt;
+        }
+
+        private void OnDestroy()
+        {
+            GlobalVariables.instance.OnPlayerHit -= PlayerHurt;
         }
 
         // Update is called once per frame
         void Update()
         {
             Move();
+
+            if (m_onPowerUp)
+            {
+                OnPowerUp();
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("EnemyBullet"))
+            {
+                GlobalVariables.instance.PlayerHitTriggered();
+                Destroy(collision.gameObject);
+            }
+
+            if (collision.CompareTag("PowerUp"))
+            {
+                CurrentWeapon = 1;
+                m_onPowerUp = true;
+                m_currentTime = 0;
+                Destroy(collision.gameObject);
+            }
+
+
+            if (collision.CompareTag("Heart"))
+            {
+                GlobalVariables.instance.LifeUpTriggered();
+                Destroy(collision.gameObject);
+            }
         }
 
         public void Move()
         {
             m_movement.x = Input.GetAxis("Horizontal");
             m_movement.y = Input.GetAxis("Vertical");
+
+            if (m_movement.x != 0 || m_movement.y != 0)
+                animator.SetBool("IsMoving", true);
+            else
+                animator.SetBool("IsMoving", false);
 
             if (m_movement.x < 0 && m_transform.position.x <= -SCREEN_BOUNDARIES_X)
                 m_movement.x = 0;
@@ -81,7 +134,27 @@ namespace Player
 
             if (Input.GetButton("Jump"))
             {
+                
                 Weapons[CurrentWeapon].ShootWeapon();
+            }
+        }
+
+        private void PlayerHurt()
+        {
+            playerSprite.DOColor(Color.red, 0.1f);
+            playerSprite.DOColor(Color.white, 0.1f).SetDelay(0.2f);
+            hitParticles.Emit(10);
+        }
+
+        private void OnPowerUp()
+        {
+            m_currentTime += Time.deltaTime;
+
+            if (m_currentTime >= m_powerUpTime)
+            {
+                m_currentTime = 0;
+                CurrentWeapon = 0;
+                m_onPowerUp = false;
             }
         }
     }

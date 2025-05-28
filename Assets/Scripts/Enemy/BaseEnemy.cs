@@ -12,18 +12,26 @@ namespace Enemy
         [SerializeField]
         private int m_speed = 1;
         [SerializeField]
-        private float stopDistance = 4f;
+        protected float stopDistance = 4f;
         [SerializeField]
         private GameObject m_hitParticles;
         [SerializeField]
         private GameObject m_deadParticles;
 
-        [Space]
         private SpriteRenderer m_spriteRenderer;
+        [Space, SerializeField]
+        private GameObject m_powerUpPrefab;
+        [SerializeField]
+        private GameObject m_heartPrefab;
+        [SerializeField]
+        private float m_spawnStuff = 0.3f;
 
         protected Transform m_playerTransform;
         protected Transform m_transform;
 
+        private bool m_canAttack = true;
+        protected float m_currentTime;
+        private float m_attackTime = 1f;
 
         public int Health
         { 
@@ -62,6 +70,8 @@ namespace Enemy
         {
             if (Vector2.Distance(m_playerTransform.position, m_transform.position) > stopDistance)
                 Move();
+            else
+                Attack();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -85,7 +95,7 @@ namespace Enemy
             GlobalVariables.instance.EnemyHitTriggered();
 
             GameObject hitFX = Instantiate(m_hitParticles, m_transform.position, Quaternion.identity);
-            Destroy(hitFX, 0.5f);
+            Destroy(hitFX, 3f);
 
             m_spriteRenderer.DOColor(Color.red, 0.1f);
             m_spriteRenderer.DOColor(Color.white, 0.1f).SetDelay(0.2f);
@@ -101,7 +111,24 @@ namespace Enemy
         {
             GlobalVariables.instance.EnemyDeffeatedTriggered();
             GameObject dead = Instantiate(m_deadParticles, m_transform.position, Quaternion.identity);
-            Destroy(dead, 0.5f);
+
+            float rand = Random.Range(0f, 1f);
+
+            if (rand <= m_spawnStuff)
+            {
+                rand = Random.Range(0f, 1f);
+
+                if (rand <= 0.5f)
+                {
+                    Instantiate(m_heartPrefab, m_transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(m_powerUpPrefab, m_transform.position, Quaternion.identity);
+                }
+            }
+
+            Destroy(dead, 4f);
             Destroy(gameObject);
         }
 
@@ -111,6 +138,26 @@ namespace Enemy
             m_transform.LookAt(m_playerTransform);
 
             m_transform.rotation = Quaternion.Euler(0, 0, m_transform.rotation.eulerAngles.z);
+        }
+
+        protected virtual void Attack()
+        {
+            if (m_canAttack)
+            {
+                //Attack
+                GlobalVariables.instance.PlayerHitTriggered();
+                m_canAttack = false;
+            }
+            else
+            {
+                m_currentTime += Time.deltaTime;
+
+                if (m_currentTime >= m_attackTime)
+                {
+                    m_currentTime = 0;
+                    m_canAttack = true;
+                }
+            }
         }
     }
 }

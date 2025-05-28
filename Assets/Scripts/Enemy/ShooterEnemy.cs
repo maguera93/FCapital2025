@@ -6,13 +6,14 @@ namespace Enemy{
 
     public class ShooterEnemy : BaseEnemy
     {
-        [SerializeField]
+        [Space, SerializeField]
         private GameObject m_bulletGO;
         [SerializeField]
-        private float m_cadency = 0.3f;
+        private float m_cadency = 2f;
+        [SerializeField]
+        private Transform m_bulletParent;
 
-        private float m_currentTime;
-        private bool m_canShoot = true;
+        private bool m_canShoot = false;
 
         public GameObject BulletGO
         {
@@ -53,15 +54,20 @@ namespace Enemy{
             if (!m_canShoot)
                 return;
 
-            GameObject b = Instantiate(BulletGO, m_transform.position, Quaternion.identity);
+            GameObject b = Instantiate(BulletGO, m_bulletParent.position, Quaternion.identity);
 
             EnemyBullet enemyBullet = b.GetComponent<EnemyBullet>();
-            Vector3 lookAt = (m_playerTransform.position - m_transform.position);
+            Vector3 lookAt = (m_playerTransform.position - m_bulletParent.position);
 
             float angle = Mathf.Atan2(lookAt.y, lookAt.x) * Mathf.Rad2Deg;
             enemyBullet.Setup(angle);
 
             m_canShoot = false;
+        }
+
+        protected override void Attack()
+        {
+            
         }
     }
 }

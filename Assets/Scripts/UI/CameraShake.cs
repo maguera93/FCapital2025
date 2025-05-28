@@ -18,6 +18,13 @@ public class CameraShake : MonoBehaviour
     {
         originPosition = transform.position;
         GlobalVariables.instance.OnEnemyHit += DoShake;
+        GlobalVariables.instance.OnPlayerHit += DoSuperShake;
+    }
+
+    private void OnDestroy()
+    {
+        GlobalVariables.instance.OnEnemyHit -= DoShake;
+        GlobalVariables.instance.OnPlayerHit -= DoSuperShake;
     }
 
     // Update is called once per frame
@@ -54,6 +61,12 @@ public class CameraShake : MonoBehaviour
     {
         shakingForce = 0.1F;
         shakeDecay = 0.05F;
+        startShake = true;
+    }
+    public void DoSuperShake()
+    {
+        shakingForce = 0.5F;
+        shakeDecay = 0.2F;
         startShake = true;
     }
 }

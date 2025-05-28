@@ -1,56 +1,62 @@
 using UnityEngine;
 
-public class Weapon : MonoBehaviour, IWeapon
+namespace Player
 {
-    [SerializeField]
-    private GameObject m_bulletGO;
-    [SerializeField]
-    private float m_cadency = 0.3f;
-
-    private float m_currentTime;
-    private bool m_canShoot = true;
-    private Transform m_transform;
-
-    public GameObject BulletGO 
+    public class Weapon : MonoBehaviour, IWeapon
     {
-        get {return m_bulletGO;}
-        set {m_bulletGO = value;}
-    }
-    public float Cadency
-    {
-        get { return m_cadency; }
-        set {m_cadency = value;}
-    }
+        [SerializeField]
+        protected GameObject m_bulletGO;
+        [SerializeField]
+        private float m_cadency = 0.3f;
+        [SerializeField]
+        protected AudioManager audioManager;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        m_transform = GetComponent<Transform>();
-    }
+        private float m_currentTime;
+        protected bool m_canShoot = true;
+        protected Transform m_transform;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!m_canShoot)
+        public GameObject BulletGO
         {
-            m_currentTime += Time.deltaTime;
-            
-            if (m_currentTime >= Cadency)
+            get { return m_bulletGO; }
+            set { m_bulletGO = value; }
+        }
+        public float Cadency
+        {
+            get { return m_cadency; }
+            set { m_cadency = value; }
+        }
+
+        // Start is called once before the first execution of Update after the MonoBehaviour is created
+        void Start()
+        {
+            m_transform = GetComponent<Transform>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (!m_canShoot)
             {
-                m_currentTime = 0;
-                m_canShoot = true;
+                m_currentTime += Time.deltaTime;
+
+                if (m_currentTime >= Cadency)
+                {
+                    m_currentTime = 0;
+                    m_canShoot = true;
+                }
             }
         }
-    }
 
-    public void ShootWeapon()
-    {
-        if (!m_canShoot)
-            return;
+        public virtual void ShootWeapon()
+        {
+            if (!m_canShoot)
+                return;
 
-        GlobalVariables.instance.Salary--;
+            GlobalVariables.instance.Salary--;
+            audioManager.PlayAudio(0, 1f, Random.Range(0.8f, 1.1f));
 
-        Instantiate(BulletGO, m_transform.position, Quaternion.identity);
-        m_canShoot = false;
+            Instantiate(BulletGO, m_transform.position, Quaternion.identity);
+            m_canShoot = false;
+        }
     }
 }
