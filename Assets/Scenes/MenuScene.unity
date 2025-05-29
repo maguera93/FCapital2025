@@ -1239,7 +1239,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chose your monthly salary!
+  m_text: Chose your monthly income!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de3d1845363f03449893fea51c9f0e10, type: 2}
   m_sharedMaterial: {fileID: 7185418184225732562, guid: de3d1845363f03449893fea51c9f0e10, type: 2}
