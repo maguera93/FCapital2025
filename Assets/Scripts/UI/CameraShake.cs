@@ -8,6 +8,8 @@ public class CameraShake : MonoBehaviour
     private Vector3 originPosition;
     private Quaternion originRotation;
 
+    [SerializeField]
+    protected GlobalVariables m_globalVariables;
 
     private bool endShake; // Check if shake is end.
     private bool isShaking; // Check if camera is shaking right now.
@@ -17,14 +19,14 @@ public class CameraShake : MonoBehaviour
     private void Awake()
     {
         originPosition = transform.position;
-        GlobalVariables.instance.OnEnemyHit += DoShake;
-        GlobalVariables.instance.OnPlayerHit += DoSuperShake;
+        m_globalVariables.OnEnemyHit += DoShake;
+        m_globalVariables.OnPlayerHit += DoSuperShake;
     }
 
     private void OnDestroy()
     {
-        GlobalVariables.instance.OnEnemyHit -= DoShake;
-        GlobalVariables.instance.OnPlayerHit -= DoSuperShake;
+        m_globalVariables.OnEnemyHit -= DoShake;
+        m_globalVariables.OnPlayerHit -= DoSuperShake;
     }
 
     // Update is called once per frame

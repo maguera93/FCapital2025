@@ -27,6 +27,8 @@ namespace Enemy
         private float m_spawnStuff = 0.3f;
         [Space, SerializeField]
         protected AudioManager m_audioManager;
+        [Space, SerializeField]
+        protected GlobalVariables m_globalVariables;
 
         protected Transform m_playerTransform;
         protected Transform m_transform;
@@ -94,7 +96,7 @@ namespace Enemy
 
             Health -= damage;
 
-            GlobalVariables.instance.EnemyHitTriggered();
+            m_globalVariables.EnemyHitTriggered();
 
             GameObject hitFX = Instantiate(m_hitParticles, m_transform.position, Quaternion.identity);
             Destroy(hitFX, 3f);
@@ -113,7 +115,7 @@ namespace Enemy
 
         public void Death()
         {
-            GlobalVariables.instance.EnemyDeffeatedTriggered();
+            m_globalVariables.EnemyDeffeatedTriggered();
             GameObject dead = Instantiate(m_deadParticles, m_transform.position, Quaternion.identity);
 
             float rand = Random.Range(0f, 1f);
@@ -151,7 +153,7 @@ namespace Enemy
             if (m_canAttack)
             {
                 //Attack
-                GlobalVariables.instance.PlayerHitTriggered();
+                m_globalVariables.PlayerHitTriggered();
                 m_canAttack = false;
             }
             else

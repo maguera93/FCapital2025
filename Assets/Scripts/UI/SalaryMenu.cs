@@ -10,6 +10,8 @@ public class SalaryMenu : MonoBehaviour
     private SceneLoader loader;
     [SerializeField]
     private AudioManager m_audioManager;
+    [Space, SerializeField]
+    protected GlobalVariables m_globalVariables;
     private bool start = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -85,7 +87,7 @@ public class SalaryMenu : MonoBehaviour
             salary += entries[i].Value * (int)Mathf.Pow(10f, i);
         }
 
-        GlobalVariables.instance.InitSalary = salary;
+        m_globalVariables.InitSalary = salary;
 
         loader.LoadScene(1);
     }

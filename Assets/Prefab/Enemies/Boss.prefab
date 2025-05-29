@@ -168,6 +168,7 @@ MonoBehaviour:
   m_heartPrefab: {fileID: 0}
   m_spawnStuff: 0
   m_audioManager: {fileID: 6611946851381845482}
+  m_globalVariables: {fileID: 11400000, guid: 4cf4543fbb578a54d828fc1c69f6274e, type: 2}
   m_bulletGO: {fileID: 68576960553705283, guid: 6aa9330a699c7884eb061c81dc88b0d6, type: 3}
   m_cadency: 4
   m_bulletParent: {fileID: 9000101806803088240}

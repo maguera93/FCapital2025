@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GlobalVariables", menuName = "Scriptable Objects/GlobalVariables")]
-public class GlobalVariables : ScriptableSingleton<GlobalVariables>
+public class GlobalVariables : ScriptableObject
 {
     [SerializeField]
     private int m_salary;

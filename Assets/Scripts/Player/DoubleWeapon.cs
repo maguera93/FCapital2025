@@ -15,7 +15,7 @@ namespace Player
 
             for (int i = 0; i < 2; i++)
             {
-                GlobalVariables.instance.Salary--;
+                m_globalVariables.Salary--;
 
                 Instantiate(BulletGO, position, Quaternion.identity);
                 m_canShoot = false;

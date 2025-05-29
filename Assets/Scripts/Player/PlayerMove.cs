@@ -25,6 +25,8 @@ namespace Player
 
         [Space, SerializeField]
         private AudioManager m_audioManager;
+        [Space, SerializeField]
+        protected GlobalVariables m_globalVariables;
 
         private int m_currentWeapon = 0;
         private Vector2 m_movement = new Vector2(0f, 0f);
@@ -70,12 +72,12 @@ namespace Player
                 Weapons[i] = m_weaponsGO[i].GetComponent<IWeapon>();
             }
 
-            GlobalVariables.instance.OnPlayerHit += PlayerHurt;
+            m_globalVariables.OnPlayerHit += PlayerHurt;
         }
 
         private void OnDestroy()
         {
-            GlobalVariables.instance.OnPlayerHit -= PlayerHurt;
+            m_globalVariables.OnPlayerHit -= PlayerHurt;
         }
 
         // Update is called once per frame
@@ -93,7 +95,7 @@ namespace Player
         {
             if (collision.CompareTag("EnemyBullet"))
             {
-                GlobalVariables.instance.PlayerHitTriggered();
+                m_globalVariables.PlayerHitTriggered();
                 Destroy(collision.gameObject);
             }
 
@@ -109,7 +111,7 @@ namespace Player
 
             if (collision.CompareTag("Heart"))
             {
-                GlobalVariables.instance.LifeUpTriggered();
+                m_globalVariables.LifeUpTriggered();
                 m_audioManager.PlayAudio(2, 1f, Random.Range(0.8f, 1.1f));
                 Destroy(collision.gameObject);
             }

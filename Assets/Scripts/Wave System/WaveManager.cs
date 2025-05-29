@@ -24,6 +24,8 @@ public class WaveManager : MonoBehaviour
 {
     [SerializeField]
     private Wave[] waves;
+    [Space, SerializeField]
+    protected GlobalVariables m_globalVariables;
 
     private int currentWave = 0;
 
@@ -31,12 +33,12 @@ public class WaveManager : MonoBehaviour
     void Start()
     {
         InitWave();
-        GlobalVariables.instance.OnEnemyDeffeated += OnEnemyDefeated;
+        m_globalVariables.OnEnemyDeffeated += OnEnemyDefeated;
     }
 
     private void OnDestroy()
     {
-        GlobalVariables.instance.OnEnemyDeffeated -= OnEnemyDefeated;
+        m_globalVariables.OnEnemyDeffeated -= OnEnemyDefeated;
     }
 
     private void InitWave()
@@ -61,7 +63,7 @@ public class WaveManager : MonoBehaviour
             if (currentWave == waves.Length)
             {
                 // Level Completed
-                GlobalVariables.instance.WinTriggered();
+                m_globalVariables.WinTriggered();
             }
             else
             {

@@ -11,6 +11,9 @@ namespace Player
         [SerializeField]
         protected AudioManager audioManager;
 
+        [SerializeField]
+        protected GlobalVariables m_globalVariables;
+
         private float m_currentTime;
         protected bool m_canShoot = true;
         protected Transform m_transform;
@@ -52,7 +55,7 @@ namespace Player
             if (!m_canShoot)
                 return;
 
-            GlobalVariables.instance.PlayerShootTriggered();
+            m_globalVariables.PlayerShootTriggered();
             audioManager.PlayAudio(0, 1f, Random.Range(0.8f, 1.1f));
 
             Instantiate(BulletGO, m_transform.position, Quaternion.identity);

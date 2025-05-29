@@ -203,6 +203,7 @@ MonoBehaviour:
   m_heartPrefab: {fileID: 476153103772096400, guid: 7f77470cf199543488e2aac2ada25e9e, type: 3}
   m_spawnStuff: 0.3
   m_audioManager: {fileID: 349625670918853630}
+  m_globalVariables: {fileID: 11400000, guid: 4cf4543fbb578a54d828fc1c69f6274e, type: 2}
 --- !u!50 &7343694847968912518
 Rigidbody2D:
   serializedVersion: 5

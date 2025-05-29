@@ -2,16 +2,19 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    [SerializeField]
+    protected GlobalVariables m_globalVariables;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GlobalVariables.instance.OnPlayerHit += OnPlayerHit;
+        m_globalVariables.OnPlayerHit += OnPlayerHit;
     }
 
     private void OnDestroy()
     {
         ResumeTime();
-        GlobalVariables.instance.OnPlayerHit -= OnPlayerHit;
+        m_globalVariables.OnPlayerHit -= OnPlayerHit;
     }
 
     // Update is called once per frame

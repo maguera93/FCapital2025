@@ -318,6 +318,7 @@ MonoBehaviour:
   m_heartPrefab: {fileID: 476153103772096400, guid: 7f77470cf199543488e2aac2ada25e9e, type: 3}
   m_spawnStuff: 0.3
   m_audioManager: {fileID: 4501836406433279505}
+  m_globalVariables: {fileID: 11400000, guid: 4cf4543fbb578a54d828fc1c69f6274e, type: 2}
   m_explosionSprite: {fileID: 585530701749753641}
   m_explosionFX: {fileID: 2741968835474817208, guid: 92b0060c5f5dede4abfdcc714ff44249, type: 3}
   animator: {fileID: 6875379026378912528}

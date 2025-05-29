@@ -42,10 +42,10 @@ namespace Enemy {
 
             if (Vector3.Distance(m_transform.position, m_playerTransform.position) <= 3f)
             {
-                GlobalVariables.instance.PlayerHitTriggered();
+                m_globalVariables.PlayerHitTriggered();
             }
 
-            GlobalVariables.instance.EnemyDeffeatedTriggered();
+            m_globalVariables.EnemyDeffeatedTriggered();
 
             m_audioManager.PlayAudio(2, 1f, Random.Range(0.8f, 1.1f));
 

@@ -93,6 +93,7 @@ MonoBehaviour:
   m_heartPrefab: {fileID: 476153103772096400, guid: 7f77470cf199543488e2aac2ada25e9e, type: 3}
   m_spawnStuff: 0.3
   m_audioManager: {fileID: 224205838517992290}
+  m_globalVariables: {fileID: 11400000, guid: 4cf4543fbb578a54d828fc1c69f6274e, type: 2}
   m_bulletGO: {fileID: 4661823521881198866, guid: 0deeedf7139e7594d84401bc96b73091, type: 3}
   m_cadency: 1
   m_bulletParent: {fileID: 370704412936248676}

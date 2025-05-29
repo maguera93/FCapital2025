@@ -59,6 +59,7 @@ MonoBehaviour:
   playerSprite: {fileID: 3424303785354688452}
   hitParticles: {fileID: 2250069280360413059}
   m_audioManager: {fileID: 5047312235750717425}
+  m_globalVariables: {fileID: 11400000, guid: 4cf4543fbb578a54d828fc1c69f6274e, type: 2}
 --- !u!50 &7131077567215077689
 Rigidbody2D:
   serializedVersion: 5
@@ -185,6 +186,7 @@ MonoBehaviour:
   m_bulletGO: {fileID: 6740792273732361126, guid: db5fe351b3d4137418735fa4895bcd9a, type: 3}
   m_cadency: 0.1
   audioManager: {fileID: 5047312235750717425}
+  m_globalVariables: {fileID: 11400000, guid: 4cf4543fbb578a54d828fc1c69f6274e, type: 2}
 --- !u!1 &6067819725691360438
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +345,7 @@ MonoBehaviour:
   m_bulletGO: {fileID: 6740792273732361126, guid: db5fe351b3d4137418735fa4895bcd9a, type: 3}
   m_cadency: 0.1
   audioManager: {fileID: 5047312235750717425}
+  m_globalVariables: {fileID: 0}
 --- !u!114 &8162395830940194899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,6 +361,7 @@ MonoBehaviour:
   m_bulletGO: {fileID: 6740792273732361126, guid: db5fe351b3d4137418735fa4895bcd9a, type: 3}
   m_cadency: 0.3
   audioManager: {fileID: 5047312235750717425}
+  m_globalVariables: {fileID: 11400000, guid: 4cf4543fbb578a54d828fc1c69f6274e, type: 2}
 --- !u!1001 &6149919517882227497
 PrefabInstance:
   m_ObjectHideFlags: 0

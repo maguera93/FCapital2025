@@ -5,36 +5,38 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private SceneLoader loader;
+    [Space, SerializeField]
+    protected GlobalVariables m_globalVariables;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        if (GlobalVariables.instance.InitSalary == 0)
-            GlobalVariables.instance.InitSalary = 1100;
+        if (m_globalVariables.InitSalary == 0)
+            m_globalVariables.InitSalary = 1100;
 
-        GlobalVariables.instance.Salary = GlobalVariables.instance.InitSalary;
-        GlobalVariables.instance.Lifes = 3;
-        GlobalVariables.instance.Points = 0;
+        m_globalVariables.Salary = m_globalVariables.InitSalary;
+        m_globalVariables.Lifes = 3;
+        m_globalVariables.Points = 0;
 
-        GlobalVariables.instance.OnPlayerHit += PlayerHit;
-        GlobalVariables.instance.OnLifeUp += LifeUp;
-        GlobalVariables.instance.OnWin += Win;
-        GlobalVariables.instance.OnPlayerShoot += OnPlayerShoot;
+        m_globalVariables.OnPlayerHit += PlayerHit;
+        m_globalVariables.OnLifeUp += LifeUp;
+        m_globalVariables.OnWin += Win;
+        m_globalVariables.OnPlayerShoot += OnPlayerShoot;
     }
 
     private void OnDestroy()
     {
-        GlobalVariables.instance.OnPlayerHit -= PlayerHit;
-        GlobalVariables.instance.OnLifeUp -= LifeUp;
-        GlobalVariables.instance.OnWin -= Win;
-        GlobalVariables.instance.OnPlayerShoot -= OnPlayerShoot;
+        m_globalVariables.OnPlayerHit -= PlayerHit;
+        m_globalVariables.OnLifeUp -= LifeUp;
+        m_globalVariables.OnWin -= Win;
+        m_globalVariables.OnPlayerShoot -= OnPlayerShoot;
     }
 
     private void PlayerHit()
     {
-        GlobalVariables.instance.Lifes--;
+        m_globalVariables.Lifes--;
 
-        if (GlobalVariables.instance.Lifes == 0 )
+        if (m_globalVariables.Lifes == 0 )
         {
             // Game Over
             PlayerMove playerMove = FindFirstObjectByType<PlayerMove>();
@@ -54,9 +56,9 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerShoot()
     {
-        GlobalVariables.instance.Salary--;
+        m_globalVariables.Salary--;
 
-        if (GlobalVariables.instance.Salary <= 0)
+        if (m_globalVariables.Salary <= 0)
         {
             GameOver();
         }
@@ -64,10 +66,10 @@ public class GameManager : MonoBehaviour
 
     private void LifeUp()
     {
-        GlobalVariables.instance.Lifes++;
+        m_globalVariables.Lifes++;
 
-        if (GlobalVariables.instance .Lifes >= 3)
-            GlobalVariables.instance.Lifes = 3;
+        if (m_globalVariables .Lifes >= 3)
+            m_globalVariables.Lifes = 3;
     }
 
     private void LoadGameOverScene()

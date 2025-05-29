@@ -763,6 +763,7 @@ MonoBehaviour:
   - {fileID: 49155924}
   loader: {fileID: 1739124149}
   m_audioManager: {fileID: 436727214}
+  m_globalVariables: {fileID: 11400000, guid: 4cf4543fbb578a54d828fc1c69f6274e, type: 2}
 --- !u!114 &436727214
 MonoBehaviour:
   m_ObjectHideFlags: 0
