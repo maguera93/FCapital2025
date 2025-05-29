@@ -62,6 +62,8 @@ namespace Enemy{
             float angle = Mathf.Atan2(lookAt.y, lookAt.x) * Mathf.Rad2Deg;
             enemyBullet.Setup(angle);
 
+            m_audioManager.PlayAudio(2, 1f, Random.Range(0.8f, 1.1f));
+
             m_canShoot = false;
         }
 

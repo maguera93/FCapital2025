@@ -10,6 +10,8 @@ public class SalaryEntry : MonoBehaviour
     private TextMeshProUGUI text;
     [SerializeField]
     private GameObject arrows;
+    [SerializeField]
+    private AudioManager m_audioManager;
 
     public bool Selected { get => selected; set
         { 
@@ -44,6 +46,8 @@ public class SalaryEntry : MonoBehaviour
         if (Value > 9)
             Value = 0;
 
+        m_audioManager.PlayAudio(0, 1f, Random.Range(0.8f, 1.1f));
+
         text.text = Value.ToString();
     }
     void ValueDown()
@@ -52,6 +56,8 @@ public class SalaryEntry : MonoBehaviour
 
         if (Value < 0)
             Value = 9;
+
+        m_audioManager.PlayAudio(0, 1f, Random.Range(0.8f, 1.1f));
 
         text.text = Value.ToString();
     }

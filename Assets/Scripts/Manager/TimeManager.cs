@@ -10,6 +10,7 @@ public class TimeManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        ResumeTime();
         GlobalVariables.instance.OnPlayerHit -= OnPlayerHit;
     }
 

@@ -13,6 +13,9 @@ public class GlobalVariables : ScriptableSingleton<GlobalVariables>
 
     private int m_initSalary;
 
+    public delegate void PlayerShoot();
+    public PlayerShoot OnPlayerShoot;
+
     public delegate void PlayerHit();
     public PlayerHit OnPlayerHit;
 
@@ -49,6 +52,12 @@ public class GlobalVariables : ScriptableSingleton<GlobalVariables>
     {
         if (OnPlayerHit != null)
             OnPlayerHit.Invoke();
+    }
+
+    public void PlayerShootTriggered()
+    {
+        if (OnPlayerShoot != null)
+            OnPlayerShoot.Invoke();
     }
 
     public void LifeUpTriggered()

@@ -47,6 +47,8 @@ namespace Enemy {
 
             GlobalVariables.instance.EnemyDeffeatedTriggered();
 
+            m_audioManager.PlayAudio(2, 1f, Random.Range(0.8f, 1.1f));
+
             Destroy(explosion, 2f);
             Destroy(gameObject); 
         }

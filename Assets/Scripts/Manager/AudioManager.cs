@@ -8,13 +8,14 @@ public class AudioManager : MonoBehaviour
 
     public void PlayAudio(int index, float volume, float pitch)
     {
-        AudioSource source = gameObject.AddComponent<AudioSource>();
+        GameObject audio = new GameObject();
+        AudioSource source = audio.AddComponent<AudioSource>();
         source.clip = clips[index];
         source.volume = volume;
         source.pitch = pitch;
 
         source.Play();
 
-        Destroy(source, clips[index].length);
+        Destroy(audio, clips[index].length);
     }
 }

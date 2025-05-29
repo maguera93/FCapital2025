@@ -16,12 +16,15 @@ namespace Player
         private GameObject[] m_weaponsGO;
         private IWeapon[] m_weapons;
 
-        [SerializeField]
+        [Space, SerializeField]
         private Animator animator;
         [SerializeField]
         private SpriteRenderer playerSprite;
         [SerializeField]
         private ParticleSystem hitParticles;
+
+        [Space, SerializeField]
+        private AudioManager m_audioManager;
 
         private int m_currentWeapon = 0;
         private Vector2 m_movement = new Vector2(0f, 0f);
@@ -99,6 +102,7 @@ namespace Player
                 CurrentWeapon = 1;
                 m_onPowerUp = true;
                 m_currentTime = 0;
+                m_audioManager.PlayAudio(2, 1f, Random.Range(0.8f, 1.1f));
                 Destroy(collision.gameObject);
             }
 
@@ -106,6 +110,7 @@ namespace Player
             if (collision.CompareTag("Heart"))
             {
                 GlobalVariables.instance.LifeUpTriggered();
+                m_audioManager.PlayAudio(2, 1f, Random.Range(0.8f, 1.1f));
                 Destroy(collision.gameObject);
             }
         }
@@ -144,6 +149,7 @@ namespace Player
             playerSprite.DOColor(Color.red, 0.1f);
             playerSprite.DOColor(Color.white, 0.1f).SetDelay(0.2f);
             hitParticles.Emit(10);
+            m_audioManager.PlayAudio(1, 1f, Random.Range(0.8f, 1.1f));
         }
 
         private void OnPowerUp()

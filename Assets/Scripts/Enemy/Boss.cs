@@ -31,6 +31,9 @@ public class Boss : BaseEnemy
 
         sequence.SetLoops(-1);
 
+        m_audioManager.PlayAudio(2, 1f, Random.Range(0.5f, 0.8f));
+        StartCoroutine(Laught());
+
         sequence.Restart();
     }
 
@@ -76,9 +79,20 @@ public class Boss : BaseEnemy
             enemyBullet.Setup(initAngle);
             initAngle += angle;
 
+            m_audioManager.PlayAudio(3, 0.3f, Random.Range(0.8f, 1.1f));
+
             yield return new WaitForSeconds(0.1f);
         }
 
         yield return null;
+    }
+
+    IEnumerator Laught()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(0.5f, 10f));
+            m_audioManager.PlayAudio(2, 1f, Random.Range(0.8f, 1.1f));
+        }
     }
 }

@@ -58,6 +58,7 @@ MonoBehaviour:
   animator: {fileID: 754953138891757937}
   playerSprite: {fileID: 3424303785354688452}
   hitParticles: {fileID: 2250069280360413059}
+  m_audioManager: {fileID: 5047312235750717425}
 --- !u!50 &7131077567215077689
 Rigidbody2D:
   serializedVersion: 5
@@ -135,6 +136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 8300000, guid: 4f61524c016c8844c93d45c2723e4fd9, type: 3}
+  - {fileID: 8300000, guid: fb51754804ee9834f8f6b3fe1c8961e8, type: 3}
+  - {fileID: 8300000, guid: 553b55320babb1e499b9b73d86249fda, type: 3}
 --- !u!1 &2920523240863537423
 GameObject:
   m_ObjectHideFlags: 0

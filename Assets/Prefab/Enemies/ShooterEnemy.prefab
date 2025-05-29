@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6152373975759636655}
   - component: {fileID: 6962962815856857695}
   - component: {fileID: 9125019504910658607}
+  - component: {fileID: 224205838517992290}
   m_Layer: 0
   m_Name: ShooterEnemy
   m_TagString: Untagged
@@ -84,16 +85,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_health: 15
-  m_speed: 1
-  stopDistance: 4
+  m_speed: 0.5
+  stopDistance: 4.5
   m_hitParticles: {fileID: 7396365244476062229, guid: daa732c8e6b76d7479a6314c3ae2d6fa, type: 3}
   m_deadParticles: {fileID: 1469159943869445994, guid: 1238aa4525b887348b72cd85dd93608d, type: 3}
   m_powerUpPrefab: {fileID: 3379503984992844766, guid: fd1abd246b6384e49871fc0a965c9e54, type: 3}
   m_heartPrefab: {fileID: 476153103772096400, guid: 7f77470cf199543488e2aac2ada25e9e, type: 3}
   m_spawnStuff: 0.3
+  m_audioManager: {fileID: 224205838517992290}
   m_bulletGO: {fileID: 4661823521881198866, guid: 0deeedf7139e7594d84401bc96b73091, type: 3}
   m_cadency: 1
   m_bulletParent: {fileID: 370704412936248676}
+--- !u!114 &224205838517992290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695230037187204902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d68e6b3c7738c42acaeb491cba5e73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 48eeadb4cf7246c4896893ecf675a8fe, type: 3}
+  - {fileID: 8300000, guid: 8de0985b730e03c4fa1326c86b86c51d, type: 3}
+  - {fileID: 8300000, guid: f163e406cfa39cc4bab68030328bffb9, type: 3}
 --- !u!1 &5021846780905847241
 GameObject:
   m_ObjectHideFlags: 0

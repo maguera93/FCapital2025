@@ -10,7 +10,7 @@ namespace Enemy
         [SerializeField]
         private int m_health = 10;
         [SerializeField]
-        private int m_speed = 1;
+        private float m_speed = 1;
         [SerializeField]
         protected float stopDistance = 4f;
         [SerializeField]
@@ -25,6 +25,8 @@ namespace Enemy
         private GameObject m_heartPrefab;
         [SerializeField]
         private float m_spawnStuff = 0.3f;
+        [Space, SerializeField]
+        protected AudioManager m_audioManager;
 
         protected Transform m_playerTransform;
         protected Transform m_transform;
@@ -44,7 +46,7 @@ namespace Enemy
                 m_health = value;
             }
         }
-        public int Speed
+        public float Speed
         {
             get
             {
@@ -100,6 +102,8 @@ namespace Enemy
             m_spriteRenderer.DOColor(Color.red, 0.1f);
             m_spriteRenderer.DOColor(Color.white, 0.1f).SetDelay(0.2f);
 
+            m_audioManager.PlayAudio(0, 0.3f, Random.Range(0.8f, 1.1f));
+
             if (Health <= 0)
             {
                 // Death
@@ -127,6 +131,8 @@ namespace Enemy
                     Instantiate(m_powerUpPrefab, m_transform.position, Quaternion.identity);
                 }
             }
+
+            m_audioManager.PlayAudio(1, 2f, Random.Range(0.8f, 1.1f));
 
             Destroy(dead, 4f);
             Destroy(gameObject);

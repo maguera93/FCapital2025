@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 3169005027345778304}
   - component: {fileID: 3477650414372539170}
   - component: {fileID: 5783737419775454049}
+  - component: {fileID: 6611946851381845482}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -166,6 +167,7 @@ MonoBehaviour:
   m_powerUpPrefab: {fileID: 0}
   m_heartPrefab: {fileID: 0}
   m_spawnStuff: 0
+  m_audioManager: {fileID: 6611946851381845482}
   m_bulletGO: {fileID: 68576960553705283, guid: 6aa9330a699c7884eb061c81dc88b0d6, type: 3}
   m_cadency: 4
   m_bulletParent: {fileID: 9000101806803088240}
@@ -233,6 +235,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6611946851381845482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4596253031149426345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d68e6b3c7738c42acaeb491cba5e73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 48eeadb4cf7246c4896893ecf675a8fe, type: 3}
+  - {fileID: 8300000, guid: 8de0985b730e03c4fa1326c86b86c51d, type: 3}
+  - {fileID: 8300000, guid: 08e870099bc3a484d8300b27762e0363, type: 3}
+  - {fileID: 8300000, guid: 8b94a9672c47cfc43b394b9c5635823e, type: 3}
 --- !u!1 &7960295089617028040
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,9 @@ public class SalaryMenu : MonoBehaviour
 
     [SerializeField]
     private SceneLoader loader;
-
+    [SerializeField]
+    private AudioManager m_audioManager;
+    private bool start = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,18 +20,28 @@ public class SalaryMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
-            MoveLeft();
-        else if (Input.GetKeyUp(KeyCode.RightArrow))
-            MoveRight();
-
-        if (Input.GetKeyDown(KeyCode.Space) ||  Input.GetKeyDown(KeyCode.Return))
+        if (!start)
         {
-            StartGame();
-            loader.LoadScene(1);
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
+                MoveLeft();
+            else if (Input.GetKeyUp(KeyCode.RightArrow))
+                MoveRight();
+
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
+            {
+                Invoke("StartGame", 1f);
+
+                //StartGame();
+                for (int i = 0; i < entries.Length; i++)
+                {
+                    entries[i].enabled = false;
+                }
+
+                start = true;
+                m_audioManager.PlayAudio(1, 1f, 1f);
+            }
         }
     }
-
     private void UpdateEntries()
     {
         for (int i = 0; i < entries.Length; i++)
@@ -47,6 +59,8 @@ public class SalaryMenu : MonoBehaviour
         if (currentEntrie >= entries.Length)
             currentEntrie = 0;
 
+        m_audioManager.PlayAudio(0, 1f, Random.Range(0.8f, 1.1f));
+
         UpdateEntries();
     }
 
@@ -56,6 +70,8 @@ public class SalaryMenu : MonoBehaviour
 
         if (currentEntrie < 0)
             currentEntrie = entries.Length - 1;
+
+        m_audioManager.PlayAudio(0, 1f, Random.Range(0.8f, 1.1f));
 
         UpdateEntries();
     }
@@ -70,5 +86,7 @@ public class SalaryMenu : MonoBehaviour
         }
 
         GlobalVariables.instance.InitSalary = salary;
+
+        loader.LoadScene(1);
     }
 }

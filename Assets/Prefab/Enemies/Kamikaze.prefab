@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 538248334337377401}
   - component: {fileID: 3876427761512520934}
   - component: {fileID: 874863291099704758}
+  - component: {fileID: 4501836406433279505}
   m_Layer: 0
   m_Name: Kamikaze
   m_TagString: Untagged
@@ -316,6 +317,23 @@ MonoBehaviour:
   m_powerUpPrefab: {fileID: 3379503984992844766, guid: fd1abd246b6384e49871fc0a965c9e54, type: 3}
   m_heartPrefab: {fileID: 476153103772096400, guid: 7f77470cf199543488e2aac2ada25e9e, type: 3}
   m_spawnStuff: 0.3
+  m_audioManager: {fileID: 4501836406433279505}
   m_explosionSprite: {fileID: 585530701749753641}
   m_explosionFX: {fileID: 2741968835474817208, guid: 92b0060c5f5dede4abfdcc714ff44249, type: 3}
   animator: {fileID: 6875379026378912528}
+--- !u!114 &4501836406433279505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6236826622508975312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d68e6b3c7738c42acaeb491cba5e73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 48eeadb4cf7246c4896893ecf675a8fe, type: 3}
+  - {fileID: 8300000, guid: 8de0985b730e03c4fa1326c86b86c51d, type: 3}
+  - {fileID: 8300000, guid: ac1f8ac27f3866f4fb783ae46c74e877, type: 3}

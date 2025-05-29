@@ -52,7 +52,7 @@ namespace Player
             if (!m_canShoot)
                 return;
 
-            GlobalVariables.instance.Salary--;
+            GlobalVariables.instance.PlayerShootTriggered();
             audioManager.PlayAudio(0, 1f, Random.Range(0.8f, 1.1f));
 
             Instantiate(BulletGO, m_transform.position, Quaternion.identity);

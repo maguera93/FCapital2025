@@ -4,7 +4,7 @@ namespace Enemy
 {
     public interface IEnemyMovement
     {
-        public int Speed { get; set; }
+        public float Speed { get; set; }
         public void Move();
     }
 }
